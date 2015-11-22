@@ -12,6 +12,27 @@
 		BBD5A57A1C01D19F00A5A62E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBD5A5781C01D19F00A5A62E /* Main.storyboard */; };
 		BBD5A57C1C01D19F00A5A62E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BBD5A57B1C01D19F00A5A62E /* Assets.xcassets */; };
 		BBD5A57F1C01D19F00A5A62E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBD5A57D1C01D19F00A5A62E /* LaunchScreen.storyboard */; };
+		BBD5A58D1C01D23700A5A62E /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBD5A58C1C01D23700A5A62E /* Firebase.framework */; };
+		BBD5A58F1C01D25100A5A62E /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBD5A58E1C01D25100A5A62E /* Bolts.framework */; };
+		BBD5A5911C01D26F00A5A62E /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBD5A5901C01D26F00A5A62E /* FBSDKCoreKit.framework */; };
+		BBD5A5931C01D27700A5A62E /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBD5A5921C01D27700A5A62E /* FBSDKLoginKit.framework */; };
+		BBD5A5981C01D29600A5A62E /* NotoSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BBD5A5941C01D29600A5A62E /* NotoSans-Bold.ttf */; };
+		BBD5A5991C01D29600A5A62E /* NotoSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BBD5A5951C01D29600A5A62E /* NotoSans-BoldItalic.ttf */; };
+		BBD5A59A1C01D29600A5A62E /* NotoSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BBD5A5961C01D29600A5A62E /* NotoSans-Italic.ttf */; };
+		BBD5A59B1C01D29600A5A62E /* NotoSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BBD5A5971C01D29600A5A62E /* NotoSans-Regular.ttf */; };
+		BBD5A59D1C01D2F400A5A62E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBD5A59C1C01D2F400A5A62E /* SystemConfiguration.framework */; };
+		BBD5A59F1C01D33400A5A62E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBD5A59E1C01D33400A5A62E /* Security.framework */; };
+		BBD5A5A11C01D33F00A5A62E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBD5A5A01C01D33F00A5A62E /* Foundation.framework */; };
+		BBD5A5A31C01D35700A5A62E /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBD5A5A21C01D35700A5A62E /* CFNetwork.framework */; };
+		BBD5A5A61C01D59C00A5A62E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD5A5A51C01D59C00A5A62E /* Constants.swift */; };
+		BBD5A5A81C01D5E700A5A62E /* MaterialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD5A5A71C01D5E700A5A62E /* MaterialView.swift */; };
+		BBD5A5AA1C01D6ED00A5A62E /* MaterialButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD5A5A91C01D6ED00A5A62E /* MaterialButton.swift */; };
+		BBD5A5AC1C01D71F00A5A62E /* MaterialTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD5A5AB1C01D71F00A5A62E /* MaterialTextField.swift */; };
+		BBD5A5AF1C01E09500A5A62E /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD5A5AE1C01E09500A5A62E /* DataService.swift */; };
+		BBD5A5B11C01E68000A5A62E /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BBD5A5B01C01E68000A5A62E /* libicucore.tbd */; };
+		BBD5A5B31C01E68C00A5A62E /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BBD5A5B21C01E68C00A5A62E /* libc++.tbd */; };
+		BBD5A5B51C0232BF00A5A62E /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD5A5B41C0232BF00A5A62E /* FeedVC.swift */; };
+		BBD5A5B71C02340E00A5A62E /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD5A5B61C02340E00A5A62E /* FeedCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +43,27 @@
 		BBD5A57B1C01D19F00A5A62E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BBD5A57E1C01D19F00A5A62E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BBD5A5801C01D19F00A5A62E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BBD5A58C1C01D23700A5A62E /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Firebase.framework; sourceTree = "<group>"; };
+		BBD5A58E1C01D25100A5A62E /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		BBD5A5901C01D26F00A5A62E /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		BBD5A5921C01D27700A5A62E /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		BBD5A5941C01D29600A5A62E /* NotoSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-Bold.ttf"; sourceTree = "<group>"; };
+		BBD5A5951C01D29600A5A62E /* NotoSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-BoldItalic.ttf"; sourceTree = "<group>"; };
+		BBD5A5961C01D29600A5A62E /* NotoSans-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-Italic.ttf"; sourceTree = "<group>"; };
+		BBD5A5971C01D29600A5A62E /* NotoSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-Regular.ttf"; sourceTree = "<group>"; };
+		BBD5A59C1C01D2F400A5A62E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		BBD5A59E1C01D33400A5A62E /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		BBD5A5A01C01D33F00A5A62E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		BBD5A5A21C01D35700A5A62E /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		BBD5A5A51C01D59C00A5A62E /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		BBD5A5A71C01D5E700A5A62E /* MaterialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaterialView.swift; sourceTree = "<group>"; };
+		BBD5A5A91C01D6ED00A5A62E /* MaterialButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaterialButton.swift; sourceTree = "<group>"; };
+		BBD5A5AB1C01D71F00A5A62E /* MaterialTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaterialTextField.swift; sourceTree = "<group>"; };
+		BBD5A5AE1C01E09500A5A62E /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		BBD5A5B01C01E68000A5A62E /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
+		BBD5A5B21C01E68C00A5A62E /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		BBD5A5B41C0232BF00A5A62E /* FeedVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedVC.swift; sourceTree = "<group>"; };
+		BBD5A5B61C02340E00A5A62E /* FeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +71,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBD5A5B31C01E68C00A5A62E /* libc++.tbd in Frameworks */,
+				BBD5A5B11C01E68000A5A62E /* libicucore.tbd in Frameworks */,
+				BBD5A5A31C01D35700A5A62E /* CFNetwork.framework in Frameworks */,
+				BBD5A5A11C01D33F00A5A62E /* Foundation.framework in Frameworks */,
+				BBD5A59F1C01D33400A5A62E /* Security.framework in Frameworks */,
+				BBD5A59D1C01D2F400A5A62E /* SystemConfiguration.framework in Frameworks */,
+				BBD5A58D1C01D23700A5A62E /* Firebase.framework in Frameworks */,
+				BBD5A5911C01D26F00A5A62E /* FBSDKCoreKit.framework in Frameworks */,
+				BBD5A5931C01D27700A5A62E /* FBSDKLoginKit.framework in Frameworks */,
+				BBD5A58F1C01D25100A5A62E /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +92,7 @@
 			children = (
 				BBD5A5731C01D19F00A5A62E /* students-showcase */,
 				BBD5A5721C01D19F00A5A62E /* Products */,
+				BBD5A5A41C01D35E00A5A62E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,14 +107,98 @@
 		BBD5A5731C01D19F00A5A62E /* students-showcase */ = {
 			isa = PBXGroup;
 			children = (
+				BBD5A5AD1C01E07200A5A62E /* Services */,
+				BBD5A58B1C01D21D00A5A62E /* Frameworks */,
+				BBD5A58A1C01D21700A5A62E /* Util */,
+				BBD5A5891C01D20B00A5A62E /* Resources */,
+				BBD5A5881C01D20400A5A62E /* Model */,
+				BBD5A5871C01D1FD00A5A62E /* View */,
+				BBD5A5861C01D1F000A5A62E /* Controller */,
 				BBD5A5741C01D19F00A5A62E /* AppDelegate.swift */,
-				BBD5A5761C01D19F00A5A62E /* ViewController.swift */,
-				BBD5A5781C01D19F00A5A62E /* Main.storyboard */,
 				BBD5A57B1C01D19F00A5A62E /* Assets.xcassets */,
 				BBD5A57D1C01D19F00A5A62E /* LaunchScreen.storyboard */,
 				BBD5A5801C01D19F00A5A62E /* Info.plist */,
 			);
 			path = "students-showcase";
+			sourceTree = "<group>";
+		};
+		BBD5A5861C01D1F000A5A62E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				BBD5A5761C01D19F00A5A62E /* ViewController.swift */,
+				BBD5A5B41C0232BF00A5A62E /* FeedVC.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		BBD5A5871C01D1FD00A5A62E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BBD5A5781C01D19F00A5A62E /* Main.storyboard */,
+				BBD5A5A71C01D5E700A5A62E /* MaterialView.swift */,
+				BBD5A5A91C01D6ED00A5A62E /* MaterialButton.swift */,
+				BBD5A5AB1C01D71F00A5A62E /* MaterialTextField.swift */,
+				BBD5A5B61C02340E00A5A62E /* FeedCell.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		BBD5A5881C01D20400A5A62E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		BBD5A5891C01D20B00A5A62E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				BBD5A5941C01D29600A5A62E /* NotoSans-Bold.ttf */,
+				BBD5A5951C01D29600A5A62E /* NotoSans-BoldItalic.ttf */,
+				BBD5A5961C01D29600A5A62E /* NotoSans-Italic.ttf */,
+				BBD5A5971C01D29600A5A62E /* NotoSans-Regular.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		BBD5A58A1C01D21700A5A62E /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				BBD5A5A51C01D59C00A5A62E /* Constants.swift */,
+			);
+			name = Util;
+			sourceTree = "<group>";
+		};
+		BBD5A58B1C01D21D00A5A62E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BBD5A5921C01D27700A5A62E /* FBSDKLoginKit.framework */,
+				BBD5A5901C01D26F00A5A62E /* FBSDKCoreKit.framework */,
+				BBD5A58E1C01D25100A5A62E /* Bolts.framework */,
+				BBD5A58C1C01D23700A5A62E /* Firebase.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BBD5A5A41C01D35E00A5A62E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BBD5A5B21C01E68C00A5A62E /* libc++.tbd */,
+				BBD5A5B01C01E68000A5A62E /* libicucore.tbd */,
+				BBD5A5A21C01D35700A5A62E /* CFNetwork.framework */,
+				BBD5A5A01C01D33F00A5A62E /* Foundation.framework */,
+				BBD5A59E1C01D33400A5A62E /* Security.framework */,
+				BBD5A59C1C01D2F400A5A62E /* SystemConfiguration.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BBD5A5AD1C01E07200A5A62E /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				BBD5A5AE1C01E09500A5A62E /* DataService.swift */,
+			);
+			name = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -123,9 +260,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBD5A5981C01D29600A5A62E /* NotoSans-Bold.ttf in Resources */,
 				BBD5A57F1C01D19F00A5A62E /* LaunchScreen.storyboard in Resources */,
+				BBD5A5991C01D29600A5A62E /* NotoSans-BoldItalic.ttf in Resources */,
+				BBD5A59A1C01D29600A5A62E /* NotoSans-Italic.ttf in Resources */,
 				BBD5A57C1C01D19F00A5A62E /* Assets.xcassets in Resources */,
 				BBD5A57A1C01D19F00A5A62E /* Main.storyboard in Resources */,
+				BBD5A59B1C01D29600A5A62E /* NotoSans-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,8 +277,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBD5A5AC1C01D71F00A5A62E /* MaterialTextField.swift in Sources */,
+				BBD5A5AF1C01E09500A5A62E /* DataService.swift in Sources */,
 				BBD5A5771C01D19F00A5A62E /* ViewController.swift in Sources */,
 				BBD5A5751C01D19F00A5A62E /* AppDelegate.swift in Sources */,
+				BBD5A5B51C0232BF00A5A62E /* FeedVC.swift in Sources */,
+				BBD5A5A61C01D59C00A5A62E /* Constants.swift in Sources */,
+				BBD5A5A81C01D5E700A5A62E /* MaterialView.swift in Sources */,
+				BBD5A5AA1C01D6ED00A5A62E /* MaterialButton.swift in Sources */,
+				BBD5A5B71C02340E00A5A62E /* FeedCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,6 +396,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/students-showcase",
+				);
 				INFOPLIST_FILE = "students-showcase/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.AndrewsCompany.students-showcase";
@@ -259,6 +411,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/students-showcase",
+				);
 				INFOPLIST_FILE = "students-showcase/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.AndrewsCompany.students-showcase";
