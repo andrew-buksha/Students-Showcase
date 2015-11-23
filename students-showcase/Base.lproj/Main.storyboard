@@ -237,8 +237,11 @@
                                                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
-                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Likes" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.59999999999999998" translatesAutoresizingMaskIntoConstraints="NO" id="YCL-OF-8Z5">
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Likes" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="YCL-OF-8Z5">
                                                                                     <rect key="frame" x="0.0" y="24" width="40" height="26"/>
+                                                                                    <constraints>
+                                                                                        <constraint firstAttribute="width" constant="40" id="OdX-Uu-G4L"/>
+                                                                                    </constraints>
                                                                                     <fontDescription key="fontDescription" name="NotoSans" family="Noto Sans" pointSize="17"/>
                                                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                                                     <nil key="highlightedColor"/>
@@ -247,7 +250,7 @@
                                                                         </stackView>
                                                                     </subviews>
                                                                 </stackView>
-                                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" editable="NO" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="lb5-6F-LzF">
+                                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="lb5-6F-LzF">
                                                                     <rect key="frame" x="0.0" y="60" width="528" height="80"/>
                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <constraints>
@@ -311,6 +314,7 @@
                                             <outlet property="profileImg" destination="2LZ-D7-MY6" id="EZv-Lk-wuA"/>
                                             <outlet property="profileName" destination="KiU-Ra-AdL" id="5Qg-6J-aI8"/>
                                             <outlet property="showcaseImg" destination="Uaa-eT-bwA" id="f6c-Vz-q77"/>
+                                            <outlet property="showcaseTxt" destination="lb5-6F-LzF" id="Dsu-bb-yUp"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

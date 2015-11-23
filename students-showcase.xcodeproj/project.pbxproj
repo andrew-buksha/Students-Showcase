@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BB4C933B1C039D09004CFCAA /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4C933A1C039D09004CFCAA /* Post.swift */; };
 		BBD5A5751C01D19F00A5A62E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD5A5741C01D19F00A5A62E /* AppDelegate.swift */; };
 		BBD5A5771C01D19F00A5A62E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD5A5761C01D19F00A5A62E /* ViewController.swift */; };
 		BBD5A57A1C01D19F00A5A62E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBD5A5781C01D19F00A5A62E /* Main.storyboard */; };
@@ -36,6 +37,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BB4C933A1C039D09004CFCAA /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		BBD5A5711C01D19F00A5A62E /* students-showcase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "students-showcase.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBD5A5741C01D19F00A5A62E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BBD5A5761C01D19F00A5A62E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 		BBD5A5881C01D20400A5A62E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				BB4C933A1C039D09004CFCAA /* Post.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -286,6 +289,7 @@
 				BBD5A5A81C01D5E700A5A62E /* MaterialView.swift in Sources */,
 				BBD5A5AA1C01D6ED00A5A62E /* MaterialButton.swift in Sources */,
 				BBD5A5B71C02340E00A5A62E /* FeedCell.swift in Sources */,
+				BB4C933B1C039D09004CFCAA /* Post.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -441,6 +445,7 @@
 				BBD5A5851C01D19F00A5A62E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

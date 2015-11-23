@@ -15,6 +15,8 @@ class FeedCell: UITableViewCell {
     @IBOutlet weak var likesCount: UILabel!
     @IBOutlet weak var showcaseImg: UIImageView!
     @IBOutlet weak var showcaseTxt: UITextView!
+    
+    var post: Post!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,11 +30,13 @@ class FeedCell: UITableViewCell {
         
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    func configureCell(post: Post) {
+        self.post = post
+        
+        self.showcaseTxt.text = post.postDescription
+        self.likesCount.text = "\(post.postLikes)"
+        
     }
     
 
-}
+} 
