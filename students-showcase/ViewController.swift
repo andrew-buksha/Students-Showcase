@@ -9,15 +9,34 @@
 import UIKit
 import FBSDKLoginKit
 import FBSDKCoreKit
+import Firebase
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
+    
+    var username: Firebase!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        emailField.resignFirstResponder()
+        passwordField.resignFirstResponder()
+        return true
+    }
+    
+    func checkForUsername() {
+        DataService.ds.REF_USERNAME.observeSingleEventOfType(.Value, withBlock: { snapshot in
+            if let doesNotExist = snapshot.value as? NSNull {
+                self.performSegueWithIdentifier("createUser", sender: nil)
+            } else {
+                self.performSegueWithIdentifier(SEGUE_LOGGED_IN, sender: nil)
+            }
+        })
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,7 +47,7 @@ class ViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         if NSUserDefaults.standardUserDefaults().valueForKey(KEY_UID) != nil {
-            self.performSegueWithIdentifier(SEGUE_LOGGED_IN, sender: nil)
+            performSegueWithIdentifier(SEGUE_LOGGED_IN, sender: nil)
         }
     }
     
@@ -49,11 +68,11 @@ class ViewController: UIViewController {
                     } else {
                         print("Logged in! \(authData)")
                         
-                        let user = ["provider": authData.provider!, "blah": "test data"]
+                        let user = ["provider": authData.provider!]
                         DataService.ds.createFirebaseUser(authData.uid, user: user)
                         
                         NSUserDefaults.standardUserDefaults().setValue(authData.uid, forKey: KEY_UID)
-                        self.performSegueWithIdentifier(SEGUE_LOGGED_IN, sender: nil)
+                        self.checkForUsername()
                     }
                 })
             }
@@ -76,10 +95,10 @@ class ViewController: UIViewController {
                             } else {
                                 NSUserDefaults.standardUserDefaults().setValue(result[KEY_UID], forKey: KEY_UID)
                                 DataService.ds.REF_BASE.authUser(email, password: pwd, withCompletionBlock: { error, authData in
-                                    let user = ["provider": authData.provider!, "blah": "test email data"]
+                                    let user = ["provider": authData.provider!]
                                     DataService.ds.createFirebaseUser(authData.uid, user: user)
                                 })
-                                self.performSegueWithIdentifier(SEGUE_LOGGED_IN, sender: nil)
+                                self.checkForUsername()
                             }
                         })
                     } else {
@@ -87,8 +106,7 @@ class ViewController: UIViewController {
                     }
                 } else {
                     NSUserDefaults.standardUserDefaults().setValue(authData.uid, forKey: KEY_UID)
-                    self.performSegueWithIdentifier(SEGUE_LOGGED_IN, sender: nil)
-                    print(NSUserDefaults.standardUserDefaults().valueForKey(KEY_UID))
+                    self.checkForUsername()
                 }
             })
         } else {
@@ -101,6 +119,10 @@ class ViewController: UIViewController {
         let action = UIAlertAction(title: "ok", style: .Default, handler: nil)
         alert.addAction(action)
         presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    @IBAction func cancelToLoginView(segue: UIStoryboardSegue) {
+        
     }
 
 

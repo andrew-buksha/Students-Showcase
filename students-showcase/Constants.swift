@@ -13,6 +13,7 @@ let SHADOW_COLOR: CGFloat = 157.0 / 255.0
 
 //Keys
 let KEY_UID = "uid"
+let API_KEY = "ZR2TUVP8928fd501ac5f133131096a9e65578faf"
 
 //Segues
 

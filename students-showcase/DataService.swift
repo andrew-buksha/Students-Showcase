@@ -19,6 +19,8 @@ class DataService {
     private var _REF_POSTS = Firebase(url: "\(URL_BASE)/posts")
     private var _REF_USERS = Firebase(url: "\(URL_BASE)/users")
     
+    
+    
     var REF_BASE: Firebase {
         return _REF_BASE
     }
@@ -31,7 +33,20 @@ class DataService {
         return _REF_USERS
     }
     
+    var REF_USERNAME: Firebase {
+        let username = REF_USER_CURRENT.childByAppendingPath("username")
+        return username
+    }
+    
+    var REF_USER_CURRENT: Firebase {
+        let uid = NSUserDefaults.standardUserDefaults().valueForKey(KEY_UID) as! String
+        let user = Firebase(url: "\(URL_BASE)").childByAppendingPath("users").childByAppendingPath(uid)
+        return user!
+    }
+    
     func createFirebaseUser(uid: String, user: Dictionary<String, String>) {
         REF_USERS.childByAppendingPath(uid).setValue(user)
     }
+    
+    
 }
