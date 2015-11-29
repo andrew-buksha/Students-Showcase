@@ -44,7 +44,7 @@ class FeedCell: UITableViewCell {
     func configureCell(post: Post, img: UIImage?, profileImage: UIImage?) {
         self.post = post
         
-        likeRef = DataService.ds.REF_USER_CURRENT.childByAppendingPath("likes").childByAppendingPath(post.postKey)
+        likeRef = DataService.ds.REF_USER_CURRENT.childByAppendingPath("likes").childByAppendingPath("posts").childByAppendingPath(post.postKey)
         
         self.showcaseTxt.text = post.postDescription
         self.likesCount.text = "\(post.postLikes)"
@@ -82,27 +82,11 @@ class FeedCell: UITableViewCell {
             }
         }
         
-        likeRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
-            if let doesNotExist = snapshot.value as? NSNull {
-                self.likeImg.image = UIImage(named: "heart-empty")
-            } else {
-                self.likeImg.image = UIImage(named: "heart-full")
-            }
-        })
+        LikeService.ls.observeSingleEvent(likeRef, likeImg: self.likeImg)
     }
     
     func likeTapped(sender: UITapGestureRecognizer) {
-        likeRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
-            if let doesNotExist = snapshot.value as? NSNull {
-                self.likeImg.image = UIImage(named: "heart-full")
-                self.post.adjustLikes(true)
-                self.likeRef.setValue(true)
-            } else {
-                self.likeImg.image = UIImage(named: "heart-empty")
-                self.post.adjustLikes(false)
-                self.likeRef.removeValue()
-            }
-        })
+        LikeService.ls.likeTapped(likeRef, likeImg: self.likeImg, likes: post.postLikes, ref: post.postRef)
     }
     
 

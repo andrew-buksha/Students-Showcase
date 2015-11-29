@@ -42,6 +42,10 @@ class Post {
         return _postKey
     }
     
+    var postRef: Firebase {
+        return _postRef
+    }
+    
     init(description: String, imageUrl: String?, username: String) {
         self._postDescription = description
         self._imageUrl = imageUrl
@@ -75,15 +79,17 @@ class Post {
         
     }
     
-    func adjustLikes(addLike: Bool) {
-        if addLike {
-            _postLikes = _postLikes + 1
-        } else {
-            _postLikes = _postLikes - 1
-        }
-        
-        _postRef.childByAppendingPath("likes").setValue(_postLikes)
-    }
+    
+    
+//    func adjustLikes(addLike: Bool) {
+//        if addLike {
+//            _postLikes = _postLikes + 1
+//        } else {
+//            _postLikes = _postLikes - 1
+//        }
+//        
+//        _postRef.childByAppendingPath("likes").setValue(_postLikes)
+//    }
     
     
 }

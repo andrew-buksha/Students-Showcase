@@ -17,16 +17,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var passwordField: UITextField!
     
     var username: Firebase!
+    var activeField: UITextField?
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        emailField.resignFirstResponder()
-        passwordField.resignFirstResponder()
-        return true
     }
     
     func checkForUsername() {

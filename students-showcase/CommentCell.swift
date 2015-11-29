@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Alamofire
+import Firebase
 
 class CommentCell: UITableViewCell {
     
@@ -15,10 +17,19 @@ class CommentCell: UITableViewCell {
     @IBOutlet weak var likeImg: UIImageView!
     @IBOutlet weak var likesCount: UILabel!
     @IBOutlet weak var commentTxt: UILabel!
+    @IBOutlet weak var commentImg: UIImageView!
+    
+    var comment: Comment!
+    var request: Request?
+    var likeRef: Firebase!
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        let tap = UITapGestureRecognizer(target: self, action: "likeTapped:")
+        tap.numberOfTapsRequired = 1
+        likeImg.addGestureRecognizer(tap)
+        likeImg.userInteractionEnabled = true
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -26,5 +37,61 @@ class CommentCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    override func drawRect(rect: CGRect) {
+        profileImg.layer.cornerRadius = profileImg.frame.size.width / 2
+        profileImg.clipsToBounds = true
+        
+        commentImg.clipsToBounds = true
+    }
+    
+    func configureCell(comment: Comment, img: UIImage?, profileImage: UIImage?) {
+        
+        self.comment = comment
+        
+        likeRef = DataService.ds.REF_USER_CURRENT.childByAppendingPath("likes").childByAppendingPath("comments").childByAppendingPath(comment.commentKey)
+        
+        self.profileName.text = comment.username
+        self.likesCount.text = "\(comment.postLikes)"
+        self.commentTxt.text = comment.postDescription
+        
+        if comment.imageUrl != nil {
+            if img != nil {
+                self.commentImg.image = img
+            } else {
+                request = Alamofire.request(.GET, comment.imageUrl!).validate(contentType: ["image/*"]).response(completionHandler: { request, response, data, err in
+                    if err == nil {
+                        let img = UIImage(data: data!)!
+                        self.commentImg.image = img
+                        FeedVC.imageCache.setObject(img, forKey: self.comment.imageUrl!)
+                    }
+                })
+            }
+        } else {
+            commentImg.hidden = true
+        }
+        
+        if comment.userImg != nil {
+            if profileImage != nil {
+                self.profileImg.image = profileImage
+            } else {
+                request = Alamofire.request(.GET, comment.userImg!).validate(contentType: ["image/*"]).response(completionHandler: { request, response, data, err in
+                    if err == nil {
+                        let profileImage = UIImage(data: data!)!
+                        self.profileImg.image = profileImage
+                        FeedVC.imageCache.setObject(profileImage, forKey: self.comment.userImg!)
+                    }
+                })
+            }
+        }
+        
+        LikeService.ls.observeSingleEvent(likeRef, likeImg: self.likeImg)
+        
+    }
+    
+    func likeTapped(sender: UITapGestureRecognizer) {
+        LikeService.ls.likeTapped(likeRef, likeImg: self.likeImg, likes: comment.postLikes, ref: comment.commentRef)
+    }
+    
 
 }

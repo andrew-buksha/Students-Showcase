@@ -5,4 +5,5 @@ use_frameworks!
 
 target 'students-showcase' do
 pod 'Alamofire', '~> 3.0'
+pod 'IQKeyboardManagerSwift' 
 end

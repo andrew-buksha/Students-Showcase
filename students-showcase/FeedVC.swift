@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import Alamofire
+import IQKeyboardManagerSwift
 
 class FeedVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -31,9 +32,6 @@ class FeedVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIIm
         tableView.dataSource = self
         
         tableView.estimatedRowHeight = 395
-        
-        
-        
         let button = UIButton()
         button.setImage(UIImage(named: "logout"), forState: .Normal)
         button.frame = CGRectMake(0, 0, 24, 24)
@@ -87,6 +85,7 @@ class FeedVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIIm
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+            
         
         let post = posts[indexPath.row]
         
@@ -96,14 +95,14 @@ class FeedVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIIm
                         
             var img: UIImage?
             
-            if let url = post.imageUrl {
-                img = FeedVC.imageCache.objectForKey(url) as? UIImage
+            if let feedUrl = post.imageUrl {
+                img = FeedVC.imageCache.objectForKey(feedUrl) as? UIImage
             }
             
             var profileImg: UIImage?
             
-            if let URL = post.userImg {
-                profileImg = FeedVC.imageCache.objectForKey(URL) as? UIImage
+            if let feedURL = post.userImg {
+                profileImg = FeedVC.imageCache.objectForKey(feedURL) as? UIImage
                 
             }
             
@@ -112,8 +111,9 @@ class FeedVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIIm
         } else {
             return FeedCell()
         }
-        
     }
+    
+    
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
@@ -127,7 +127,8 @@ class FeedVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIIm
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        performSegueWithIdentifier("ShowDetailView", sender: nil)
+        let post = posts[indexPath.row]
+        performSegueWithIdentifier("ShowCommentsVC", sender: post)
     }
 
     
@@ -137,6 +138,25 @@ class FeedVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIIm
         imageSelected = true
 
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "ShowCommentsVC" {
+            if let commentsVC = segue.destinationViewController as? CommentsVC {
+                if let post = sender as? Post {
+                    commentsVC.pathKey = post.postKey
+                    if self.username != "" {
+                        commentsVC.username = self.username
+                    }
+                    if self.profileImg != "" {
+                        commentsVC.profileImg = self.profileImg
+                    }
+                } else {
+                    print("NO")
+                }
+            }
+        }
+    }
+    
     
     @IBAction func selectImage(sender: UITapGestureRecognizer) {
         presentViewController(imagePicker, animated: true, completion: nil)
@@ -179,7 +199,6 @@ class FeedVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIIm
     }
     
     func postToFirebase(imgUrl: String?) {
-//        let userPostRef = 
         
         
         var post: Dictionary<String,AnyObject> = [
