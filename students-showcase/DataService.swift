@@ -50,7 +50,7 @@ class DataService {
         REF_USERS.childByAppendingPath(uid).setValue(user)
     }
     
-    typealias CompletionHandler = (success: Bool) -> Void
+    typealias CompletionHandler = (result: String) -> Void
     
     func uploadData(textField: UITextField, imageSelector: UIImageView, imageSelected: Bool, completionHandler: CompletionHandler) {
         
@@ -73,7 +73,8 @@ class DataService {
                                 if let info = response.result.value as? Dictionary<String,AnyObject> {
                                     if let links = info["links"] as? Dictionary<String,AnyObject> {
                                         if let imgLink = links["image_link"] as? String {
-                                            completionHandler(success: true)
+                                            
+                                            completionHandler(result: imgLink)
                                         }
                                     }
                                 }
@@ -83,7 +84,7 @@ class DataService {
                         }
                 }
             } else {
-                completionHandler(success: false)
+                completionHandler(result: "")
             }
         }
     }

@@ -18,10 +18,15 @@ class FeedCell: UITableViewCell {
     @IBOutlet weak var showcaseImg: UIImageView!
     @IBOutlet weak var showcaseTxt: UITextView!
     @IBOutlet weak var likeImg: UIImageView!
+    @IBOutlet weak var commentsLbl: UILabel!
+    @IBOutlet weak var editBtn: UIButton!
+    @IBOutlet weak var deleteBtn: UIButton!
+    
     
     var post: Post!
     var request: Request?
     var likeRef: Firebase!
+    var postRef: Firebase!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,6 +35,7 @@ class FeedCell: UITableViewCell {
         tap.numberOfTapsRequired = 1
         likeImg.addGestureRecognizer(tap)
         likeImg.userInteractionEnabled = true
+        
         
     }
     
@@ -45,10 +51,12 @@ class FeedCell: UITableViewCell {
         self.post = post
         
         likeRef = DataService.ds.REF_USER_CURRENT.childByAppendingPath("likes").childByAppendingPath("posts").childByAppendingPath(post.postKey)
+        postRef = DataService.ds.REF_USER_CURRENT.childByAppendingPath("posts").childByAppendingPath(post.postKey)
         
         self.showcaseTxt.text = post.postDescription
         self.likesCount.text = "\(post.postLikes)"
         self.profileName.text = post.username
+        self.commentsLbl.text = post.comments
         
         if post.imageUrl != nil {
             
@@ -59,7 +67,7 @@ class FeedCell: UITableViewCell {
                     if err == nil {
                         let img = UIImage(data: data!)!
                         self.showcaseImg.image = img
-                        FeedVC.imageCache.setObject(img, forKey: self.post.imageUrl!)
+                        FeedVC.feedCache.setObject(img, forKey: self.post.imageUrl!)
                     }
                 })
             }
@@ -76,11 +84,22 @@ class FeedCell: UITableViewCell {
                     if err == nil {
                         let profileImage = UIImage(data: data!)!
                         self.profileImg.image = profileImage
-                        FeedVC.imageCache.setObject(profileImage, forKey: self.post.userImg!)
+                        FeedVC.feedCache.setObject(profileImage, forKey: self.post.userImg!)
                     }
                 })
             }
         }
+        
+        
+        postRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
+            if let doesNotExist = snapshot.value as? NSNull {
+                self.editBtn.hidden = true
+                self.deleteBtn.hidden = true
+            } else {
+                self.editBtn.hidden = false
+                self.deleteBtn.hidden = false
+            }
+        })
         
         LikeService.ls.observeSingleEvent(likeRef, likeImg: self.likeImg)
     }
@@ -89,5 +108,23 @@ class FeedCell: UITableViewCell {
         LikeService.ls.likeTapped(likeRef, likeImg: self.likeImg, likes: post.postLikes, ref: post.postRef)
     }
     
+    @IBAction func editBtnPressed(sender: AnyObject) {
+        UIApplication.sharedApplication().keyWindow?.currentViewController()?.performSegueWithIdentifier("GoToPostEditing", sender: nil)
+    }
+    
+    @IBAction func deleteBtnPressed(sender: AnyObject) {
+        showDeleteConfirmation()
+    }
+    
+    func showDeleteConfirmation() {
+        let alert = UIAlertController(title: "Delete post", message: "Are you sure you want to delete post?\n This action can't be canceled.", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Delete", style: .Destructive, handler: { (action: UIAlertAction!) in
+            self.post.postRef.removeValue()
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { (action: UIAlertAction!) in
+            alert.dismissViewControllerAnimated(true, completion: nil)
+        }))
+        UIApplication.sharedApplication().keyWindow?.currentViewController()?.presentViewController(alert, animated: true, completion: nil)
+    }
 
 } 

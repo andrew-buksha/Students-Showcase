@@ -63,7 +63,7 @@ class CommentCell: UITableViewCell {
                     if err == nil {
                         let img = UIImage(data: data!)!
                         self.commentImg.image = img
-                        FeedVC.imageCache.setObject(img, forKey: self.comment.imageUrl!)
+                        CommentsVC.commentCache.setObject(img, forKey: self.comment.imageUrl!)
                     }
                 })
             }
@@ -79,7 +79,7 @@ class CommentCell: UITableViewCell {
                     if err == nil {
                         let profileImage = UIImage(data: data!)!
                         self.profileImg.image = profileImage
-                        FeedVC.imageCache.setObject(profileImage, forKey: self.comment.userImg!)
+                        CommentsVC.commentCache.setObject(profileImage, forKey: self.comment.userImg!)
                     }
                 })
             }

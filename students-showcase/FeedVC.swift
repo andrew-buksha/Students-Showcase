@@ -16,8 +16,9 @@ class FeedVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIIm
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var postField: MaterialTextField!
     @IBOutlet weak var imageSelectorImage: UIImageView!
+    
     var posts = [Post]()
-    static var imageCache = NSCache()
+    static var feedCache = NSCache()
     var username = ""
     var profileImg = ""
     
@@ -31,7 +32,7 @@ class FeedVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIIm
         tableView.delegate = self
         tableView.dataSource = self
         
-        tableView.estimatedRowHeight = 395
+        tableView.estimatedRowHeight = 420
         let button = UIButton()
         button.setImage(UIImage(named: "logout"), forState: .Normal)
         button.frame = CGRectMake(0, 0, 24, 24)
@@ -53,6 +54,7 @@ class FeedVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIIm
                     if var postDict = snap.value as? Dictionary<String,AnyObject> {
                         let key = snap.key
                        let post = Post(postKey: key, dictionary: postDict)
+                        print(postDict)
                         self.posts.append(post)
                     }
                 }
@@ -96,13 +98,13 @@ class FeedVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIIm
             var img: UIImage?
             
             if let feedUrl = post.imageUrl {
-                img = FeedVC.imageCache.objectForKey(feedUrl) as? UIImage
+                img = FeedVC.feedCache.objectForKey(feedUrl) as? UIImage
             }
             
             var profileImg: UIImage?
             
             if let feedURL = post.userImg {
-                profileImg = FeedVC.imageCache.objectForKey(feedURL) as? UIImage
+                profileImg = FeedVC.feedCache.objectForKey(feedURL) as? UIImage
                 
             }
             
@@ -120,7 +122,7 @@ class FeedVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIIm
         let post = posts[indexPath.row]
         
         if post.imageUrl == nil {
-            return 165
+            return 200
         } else {
             return tableView.estimatedRowHeight
         }
@@ -150,8 +152,6 @@ class FeedVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIIm
                     if self.profileImg != "" {
                         commentsVC.profileImg = self.profileImg
                     }
-                } else {
-                    print("NO")
                 }
             }
         }
@@ -163,40 +163,16 @@ class FeedVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIIm
     }
     
     @IBAction func makePost(sender: AnyObject) {
-        
-        if let txt = postField.text where txt != "" {
-            if let img = imageSelectorImage.image where imageSelected == true  {
-                let urlStr = "https://post.imageshack.us/upload_api.php"
-                let url = NSURL(string: urlStr)!
-                let imgData = UIImageJPEGRepresentation(img, 0.2)!
-                let keyData = API_KEY.dataUsingEncoding(NSUTF8StringEncoding)!
-                let keyJSON = "json".dataUsingEncoding(NSUTF8StringEncoding)!
-                
-                Alamofire.upload(.POST, url, multipartFormData: { multipartFormData in
-                    multipartFormData.appendBodyPart(data: imgData, name: "fileupload", fileName: "image", mimeType: "image/jpg")
-                    multipartFormData.appendBodyPart(data: keyData, name: "key")
-                    multipartFormData.appendBodyPart(data: keyJSON, name: "format")
-                    }) {encodingResult in
-                        switch encodingResult {
-                        case .Success(let upload, _, _):
-                            upload.responseJSON(completionHandler: {response in
-                                if let info = response.result.value as? Dictionary<String,AnyObject> {
-                                    if let links = info["links"] as? Dictionary<String,AnyObject> {
-                                        if let imgLink = links["image_link"] as? String {
-                                            self.postToFirebase(imgLink)
-                                        }
-                                    }
-                                }
-                            })
-                        case .Failure(let error):
-                            print(error)
-                        }
-                }
+        DataService.ds.uploadData(postField, imageSelector: imageSelectorImage, imageSelected: imageSelected) { (result) -> Void in
+            if result != "" {
+                self.postToFirebase(result)
             } else {
                 self.postToFirebase(nil)
             }
         }
     }
+    
+    
     
     func postToFirebase(imgUrl: String?) {
         
@@ -216,6 +192,8 @@ class FeedVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIIm
         let firebasePost = DataService.ds.REF_POSTS.childByAutoId()
         firebasePost.setValue(post)
         firebasePost.setPriority(0 - date)
+        let postRef = DataService.ds.REF_USER_CURRENT.childByAppendingPath("posts").childByAppendingPath(firebasePost.key)
+        postRef.setValue(true)
         postField.text = ""
         imageSelectorImage.image = UIImage(named: "camera.png")
         imageSelected = false

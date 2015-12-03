@@ -17,6 +17,7 @@ class Post {
     private var _userImg: String?
     private var _postKey: String!
     private var _postRef: Firebase!
+    private var _comments: String!
     
     var postDescription: String {
         return _postDescription
@@ -46,6 +47,13 @@ class Post {
         return _postRef
     }
     
+    var comments: String {
+        if _comments == nil {
+            _comments = "0"
+        }
+        return _comments
+    }
+    
     init(description: String, imageUrl: String?, username: String) {
         self._postDescription = description
         self._imageUrl = imageUrl
@@ -73,6 +81,10 @@ class Post {
         
         if let authorImg = dictionary["profileImg"] as? String {
             self._userImg = authorImg
+        }
+        
+        if let commentsDict = dictionary["comments"] as? Dictionary<String,AnyObject> {
+            self._comments = "\(commentsDict.count)"
         }
         
         self._postRef = DataService.ds.REF_POSTS.childByAppendingPath(self._postKey)

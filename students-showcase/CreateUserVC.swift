@@ -57,39 +57,17 @@ class CreateUserVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
     @IBAction func finishBtnPressed(sender: AnyObject) {
         
         if let txt = usernameText.text where txt != "" {
-            if let img = userImg.image where imageSelected == true {
-                let urlStr = "https://post.imageshack.us/upload_api.php"
-                let url = NSURL(string: urlStr)!
-                let imgData = UIImageJPEGRepresentation(img, 0.1)!
-                let keyData = API_KEY.dataUsingEncoding(NSUTF8StringEncoding)!
-                let keyJSON = "json".dataUsingEncoding(NSUTF8StringEncoding)!
-                
-                Alamofire.upload(.POST, url, multipartFormData: { multipartFormData in
-                    multipartFormData.appendBodyPart(data: imgData, name: "fileupload", fileName: "image", mimeType: "image/jpg")
-                    multipartFormData.appendBodyPart(data: keyData, name: "key")
-                    multipartFormData.appendBodyPart(data: keyJSON, name: "format")
-                    }) {encodingResult in
-                        switch encodingResult {
-                        case .Success(let upload, _, _):
-                        upload.responseJSON(completionHandler: {response in
-                            if let info = response.result.value as? Dictionary<String,AnyObject> {
-                                if let links = info["links"] as? Dictionary<String,AnyObject> {
-                                    if let imgLink = links["image_link"] as? String {
-                                        self.createUsername(imgLink)
-                                    }
-                                }
-                            }
-                        })
-                    case .Failure(let error):
-                        print(error)
-                    }
+            DataService.ds.uploadData(usernameText, imageSelector: userImg, imageSelected: imageSelected) { (result) -> Void in
+            if result != "" {
+                self.createUsername(result)
+            } else {
+                self.createUsername(nil)
             }
-        } else {
-            self.createUsername(nil)
         }
         } else {
             showErrorAlert()
         }
+        
         performSegueWithIdentifier("logInWithUser", sender: nil)
 
     }

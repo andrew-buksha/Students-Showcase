@@ -9,13 +9,20 @@
 import UIKit
 import Firebase
 
-class CommentsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class CommentsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var commentText: MaterialTextField!
+    @IBOutlet weak var imageSelector: UIImageView!
+    
     var comments = [Comment]()
     var pathKey: String!
     var username = ""
     var profileImg = ""
+    static var commentCache = NSCache()
+    
+    var imagePicker: UIImagePickerController!
+    var imageSelected = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,11 +30,15 @@ class CommentsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         tableView.delegate = self
         tableView.dataSource = self
         
-        self.tableView.estimatedRowHeight = 80
+        imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        
+        self.tableView.estimatedRowHeight = 200
         self.tableView.rowHeight = UITableViewAutomaticDimension
         
         self.tableView.setNeedsLayout()
         self.tableView.layoutIfNeeded()
+        
         
         print(pathKey)
         print(username)
@@ -51,6 +62,13 @@ class CommentsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         })
 
     }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+        imagePicker.dismissViewControllerAnimated(true, completion: nil)
+        imageSelector.image = image
+        imageSelected = true
+        
+    }
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -70,13 +88,13 @@ class CommentsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
             var img: UIImage?
             
             if let commentUrl = comment.imageUrl {
-                img = FeedVC.imageCache.objectForKey(commentUrl) as? UIImage
+                img = CommentsVC.commentCache.objectForKey(commentUrl) as? UIImage
             }
             
             var profileImg: UIImage?
             
             if let commentURL = comment.userImg {
-                profileImg = FeedVC.imageCache.objectForKey(commentURL) as? UIImage
+                profileImg = CommentsVC.commentCache.objectForKey(commentURL) as? UIImage
                 
             }
             
@@ -86,6 +104,46 @@ class CommentsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
             return CommentCell()
         }
             
+    }
+    
+    func postToFirebase(imgUrl: String?) {
+        
+        var post: Dictionary<String,AnyObject> = [
+            "description": commentText.text!,
+            "likes": 0,
+            "username": username,
+            "profileImg": profileImg
+        ]
+        
+        if imgUrl != nil {
+            post["imageUrl"] = imgUrl
+        }
+        
+        let firebaseComment = DataService.ds.REF_POSTS.childByAppendingPath(pathKey).childByAppendingPath("comments").childByAutoId()
+        firebaseComment.setValue(post)
+        let commentRef = DataService.ds.REF_USER_CURRENT.childByAppendingPath("comments").childByAppendingPath(firebaseComment.key)
+        commentRef.setValue(true)
+        commentText.text = ""
+        imageSelector.image = UIImage(named: "camera.png")
+        imageSelected = false
+        
+        tableView.reloadData()
+        
+    }
+    
+    @IBAction func commentBtnPressed(sender: AnyObject) {
+        DataService.ds.uploadData(commentText, imageSelector: imageSelector, imageSelected: imageSelected) { (result) -> Void in
+            if result != "" {
+                self.postToFirebase(result)
+            } else {
+                self.postToFirebase(nil)
+            }
+        }
+    }
+    
+    
+    @IBAction func selectImage(sender: UITapGestureRecognizer) {
+        presentViewController(imagePicker, animated: true, completion: nil)
     }
     
 }
