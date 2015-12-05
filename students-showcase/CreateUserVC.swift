@@ -57,7 +57,7 @@ class CreateUserVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
     @IBAction func finishBtnPressed(sender: AnyObject) {
         
         if let txt = usernameText.text where txt != "" {
-            DataService.ds.uploadData(usernameText, imageSelector: userImg, imageSelected: imageSelected) { (result) -> Void in
+            DataService.ds.uploadData(usernameText.text, imageSelector: userImg, imageSelected: imageSelected) { (result) -> Void in
             if result != "" {
                 self.createUsername(result)
             } else {

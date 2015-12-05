@@ -52,9 +52,9 @@ class DataService {
     
     typealias CompletionHandler = (result: String) -> Void
     
-    func uploadData(textField: UITextField, imageSelector: UIImageView, imageSelected: Bool, completionHandler: CompletionHandler) {
+    func uploadData(text: String?, imageSelector: UIImageView, imageSelected: Bool, completionHandler: CompletionHandler) {
         
-        if let txt = textField.text where txt != "" {
+        if let txt = text where txt != "" {
             if let img = imageSelector.image where imageSelected == true  {
                 let urlStr = "https://post.imageshack.us/upload_api.php"
                 let url = NSURL(string: urlStr)!

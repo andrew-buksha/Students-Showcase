@@ -14,6 +14,7 @@
 		BB6EFFF71C0710C40012098E /* CreateUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6EFFF61C0710C40012098E /* CreateUserVC.swift */; };
 		BB8408EA1C0A1497001067CD /* Launchscreen.png in Resources */ = {isa = PBXBuildFile; fileRef = BB8408E91C0A1497001067CD /* Launchscreen.png */; };
 		BB8408EC1C0A2DC4001067CD /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8408EB1C0A2DC4001067CD /* Comment.swift */; };
+		BBBA27451C130A13007EA7B2 /* EditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBBA27441C130A13007EA7B2 /* EditVC.swift */; };
 		BBD5A5751C01D19F00A5A62E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD5A5741C01D19F00A5A62E /* AppDelegate.swift */; };
 		BBD5A5771C01D19F00A5A62E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD5A5761C01D19F00A5A62E /* ViewController.swift */; };
 		BBD5A57A1C01D19F00A5A62E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBD5A5781C01D19F00A5A62E /* Main.storyboard */; };
@@ -53,6 +54,7 @@
 		BB6EFFF61C0710C40012098E /* CreateUserVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateUserVC.swift; sourceTree = "<group>"; };
 		BB8408E91C0A1497001067CD /* Launchscreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Launchscreen.png; sourceTree = "<group>"; };
 		BB8408EB1C0A2DC4001067CD /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		BBBA27441C130A13007EA7B2 /* EditVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditVC.swift; sourceTree = "<group>"; };
 		BBD5A5711C01D19F00A5A62E /* Showcase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Showcase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBD5A5741C01D19F00A5A62E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BBD5A5761C01D19F00A5A62E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 				BBD5A5B41C0232BF00A5A62E /* FeedVC.swift */,
 				BB61EE421C064D0700952672 /* CommentsVC.swift */,
 				BB6EFFF61C0710C40012098E /* CreateUserVC.swift */,
+				BBBA27441C130A13007EA7B2 /* EditVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -373,6 +376,7 @@
 				BB0F92211C0B2CE2006FA691 /* LikeService.swift in Sources */,
 				BB61EE431C064D0700952672 /* CommentsVC.swift in Sources */,
 				BB8408EC1C0A2DC4001067CD /* Comment.swift in Sources */,
+				BBBA27451C130A13007EA7B2 /* EditVC.swift in Sources */,
 				BBD5A5771C01D19F00A5A62E /* ViewController.swift in Sources */,
 				BBF5803B1C08D9CF00B483DA /* CommentCell.swift in Sources */,
 				BBD5A5751C01D19F00A5A62E /* AppDelegate.swift in Sources */,

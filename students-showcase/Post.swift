@@ -18,6 +18,8 @@ class Post {
     private var _postKey: String!
     private var _postRef: Firebase!
     private var _comments: String!
+    private var _postPriority: AnyObject!
+    
     
     var postDescription: String {
         return _postDescription
@@ -54,14 +56,19 @@ class Post {
         return _comments
     }
     
+    var postPriority: AnyObject {
+        return _postPriority
+    }
+    
     init(description: String, imageUrl: String?, username: String) {
         self._postDescription = description
         self._imageUrl = imageUrl
         self._username = username
     }
     
-    init(postKey: String, dictionary: Dictionary<String,AnyObject>) {
+    init(postPriority: AnyObject, postKey: String, dictionary: Dictionary<String,AnyObject>) {
         self._postKey = postKey
+        self._postPriority = postPriority
         
         if let postLikes = dictionary["likes"] as? Int {
             self._postLikes = postLikes
@@ -90,18 +97,6 @@ class Post {
         self._postRef = DataService.ds.REF_POSTS.childByAppendingPath(self._postKey)
         
     }
-    
-    
-    
-//    func adjustLikes(addLike: Bool) {
-//        if addLike {
-//            _postLikes = _postLikes + 1
-//        } else {
-//            _postLikes = _postLikes - 1
-//        }
-//        
-//        _postRef.childByAppendingPath("likes").setValue(_postLikes)
-//    }
     
     
 }

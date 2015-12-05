@@ -53,8 +53,8 @@ class FeedVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIIm
                 for snap in snapshots {
                     if var postDict = snap.value as? Dictionary<String,AnyObject> {
                         let key = snap.key
-                       let post = Post(postKey: key, dictionary: postDict)
-                        print(postDict)
+                        let priority = snap.priority
+                        let post = Post(postPriority: priority, postKey: key, dictionary: postDict)
                         self.posts.append(post)
                     }
                 }
@@ -109,6 +109,10 @@ class FeedVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIIm
             }
             
             cell.configureCell(post, img: img, profileImage: profileImg)
+            cell.editBtn.tag = indexPath.row
+            cell.editBtn.addTarget(self, action: "goToEditVC:", forControlEvents: .TouchUpInside)
+            cell.deleteBtn.tag = indexPath.row
+            cell.deleteBtn.addTarget(self, action: "showDeleteConfirmation:", forControlEvents: .TouchUpInside)
             return cell
         } else {
             return FeedCell()
@@ -155,15 +159,33 @@ class FeedVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIIm
                 }
             }
         }
+        if segue.identifier == "GoToPostEditing" {
+            if let editVC = segue.destinationViewController as? EditVC {
+                if let post = sender as? Post {
+                    editVC.post = post
+                }
+            }
+        }
     }
     
+    @IBAction func goToEditVC(sender: UIButton) {
+        let post = posts[sender.tag]
+        performSegueWithIdentifier("GoToPostEditing", sender: post)
+    }
+    
+    @IBAction func showDeleteConfirmation(sender: UIButton) {
+        let post = posts[sender.tag]
+        showConfirmation("Delete post", msg: "Are you sure you want to delete post?\n This action can't be canceled.", btnTitle: "Delete") { (success) -> Void in
+            post.postRef.removeValue()
+        }
+    }
     
     @IBAction func selectImage(sender: UITapGestureRecognizer) {
         presentViewController(imagePicker, animated: true, completion: nil)
     }
     
     @IBAction func makePost(sender: AnyObject) {
-        DataService.ds.uploadData(postField, imageSelector: imageSelectorImage, imageSelected: imageSelected) { (result) -> Void in
+        DataService.ds.uploadData(postField.text, imageSelector: imageSelectorImage, imageSelected: imageSelected) { (result) -> Void in
             if result != "" {
                 self.postToFirebase(result)
             } else {
@@ -202,13 +224,19 @@ class FeedVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIIm
         
     }
     
-    
-    
     func showLogoutConfirmation() {
-        let alert = UIAlertController(title: "Log out", message: "Are you sure you want to log out?", preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "Log out", style: .Destructive, handler: { (action: UIAlertAction!) in
+        showConfirmation("Log out", msg: "Are you sure you want to log out?", btnTitle: "Log Out") { (success) -> Void in
             self.performSegueWithIdentifier("backToLoginView", sender: nil)
             NSUserDefaults.standardUserDefaults().removeObjectForKey(KEY_UID)
+        }
+    }
+    
+    typealias CompletionHandler = (success: Bool) -> Void
+    
+    func showConfirmation(alertTitle: String, msg: String, btnTitle: String, completionHandler: CompletionHandler) {
+        let alert = UIAlertController(title: alertTitle, message: msg, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: btnTitle, style: .Destructive, handler: { (action: UIAlertAction!) in
+            completionHandler(success: true)
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { (action: UIAlertAction!) in
             alert.dismissViewControllerAnimated(true, completion: nil)

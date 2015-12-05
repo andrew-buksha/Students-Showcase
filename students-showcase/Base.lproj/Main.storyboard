@@ -61,7 +61,7 @@
                                         <color key="textColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="code-icon-logo" translatesAutoresizingMaskIntoConstraints="NO" id="dlj-8h-gfI">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="code-icon" translatesAutoresizingMaskIntoConstraints="NO" id="dlj-8h-gfI">
                                         <rect key="frame" x="548" y="32" width="32" height="28"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="32" id="aCe-At-EDI"/>
@@ -400,9 +400,6 @@
                                                                                     <exclude reference="XSk-i5-bpX"/>
                                                                                 </mask>
                                                                             </variation>
-                                                                            <connections>
-                                                                                <action selector="editBtnPressed:" destination="hUE-j8-CT6" eventType="touchUpInside" id="20s-Zu-3Lk"/>
-                                                                            </connections>
                                                                         </button>
                                                                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4hG-MN-c9I">
                                                                             <rect key="frame" x="567" y="0.0" width="0.0" height="30"/>
@@ -413,9 +410,6 @@
                                                                             <state key="normal" title="Delete">
                                                                                 <color key="titleColor" red="0.93333333330000001" green="0.22352941179999999" blue="0.094117647060000004" alpha="1" colorSpace="calibratedRGB"/>
                                                                             </state>
-                                                                            <connections>
-                                                                                <action selector="deleteBtnPressed:" destination="hUE-j8-CT6" eventType="touchUpInside" id="o9v-8a-Mey"/>
-                                                                            </connections>
                                                                         </button>
                                                                     </subviews>
                                                                     <constraints>
@@ -651,7 +645,7 @@
                                                                         </mask>
                                                                     </variation>
                                                                 </label>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imgplaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="iQ1-6z-Ki3">
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iQ1-6z-Ki3">
                                                                     <rect key="frame" x="0.0" y="83" width="564" height="300"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="300" id="s5L-vK-FLV"/>
@@ -721,10 +715,10 @@
             </objects>
             <point key="canvasLocation" x="2559" y="451"/>
         </scene>
-        <!--View Controller-->
+        <!--EditVC-->
         <scene sceneID="KPh-W6-AHd">
             <objects>
-                <viewController id="aaN-Of-tSM" sceneMemberID="viewController">
+                <viewController id="aaN-Of-tSM" customClass="EditVC" customModule="Showcase" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1Oh-aG-Aom"/>
                         <viewControllerLayoutGuide type="bottom" id="TAb-eg-TO5"/>
@@ -767,8 +761,12 @@
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xwQ-Le-r5V">
+                                    <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="camera" translatesAutoresizingMaskIntoConstraints="NO" id="xwQ-Le-r5V">
                                         <rect key="frame" x="20" y="247" width="532" height="195"/>
+                                        <gestureRecognizers/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="Oyq-om-The" appends="YES" id="koU-BD-o28"/>
+                                        </connections>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J75-nO-rNn" customClass="MaterialButton" customModule="Showcase" customModuleProvider="target">
                                         <rect key="frame" x="226" y="458" width="100" height="30"/>
@@ -790,6 +788,7 @@
                                         <connections>
                                             <action selector="emailBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MxY-Cs-rks"/>
                                             <action selector="finishBtnPressed:" destination="5Ta-vj-UQc" eventType="touchUpInside" id="iZw-yn-gEz"/>
+                                            <action selector="savebtnPressed:" destination="aaN-Of-tSM" eventType="touchUpInside" id="9Z5-8x-Rrg"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -829,8 +828,18 @@
                             <constraint firstAttribute="trailing" secondItem="qPD-mI-v5V" secondAttribute="trailing" constant="10" id="plr-rs-9fQ"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="changeImgLbl" destination="V3C-Cg-X21" id="HU3-Ia-aEh"/>
+                        <outlet property="descriptionTxt" destination="bq5-Nr-uJh" id="5Ij-gC-a21"/>
+                        <outlet property="postImg" destination="xwQ-Le-r5V" id="flC-ho-jWk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sWh-uo-h3v" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Oyq-om-The">
+                    <connections>
+                        <action selector="imageTapped:" destination="aaN-Of-tSM" id="trv-ZR-UYY"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2209" y="1250"/>
         </scene>
@@ -987,13 +996,13 @@
     </scenes>
     <resources>
         <image name="camera" width="50" height="50"/>
+        <image name="code-icon" width="349" height="353"/>
         <image name="code-icon-logo" width="318" height="281"/>
         <image name="fb-icon" width="65" height="65"/>
         <image name="heart-empty" width="150" height="147"/>
-        <image name="imgplaceholder" width="50" height="50"/>
         <image name="profilePlaceholder" width="600" height="600"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="cQx-FC-33P"/>
+        <segue reference="aiJ-Na-gia"/>
     </inferredMetricsTieBreakers>
 </document>

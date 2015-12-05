@@ -132,7 +132,7 @@ class CommentsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     }
     
     @IBAction func commentBtnPressed(sender: AnyObject) {
-        DataService.ds.uploadData(commentText, imageSelector: imageSelector, imageSelected: imageSelected) { (result) -> Void in
+        DataService.ds.uploadData(commentText.text, imageSelector: imageSelector, imageSelected: imageSelected) { (result) -> Void in
             if result != "" {
                 self.postToFirebase(result)
             } else {

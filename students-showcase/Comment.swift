@@ -28,7 +28,7 @@ class Comment: Post {
     }
     
     convenience init(commentKey: String, postKey: String, dictionary: Dictionary<String, AnyObject>) {
-        self.init(postKey: postKey, dictionary: dictionary)
+        self.init(postPriority: "", postKey: postKey, dictionary: dictionary)
         self._commentKey = commentKey
         
         self._commentRef = DataService.ds.REF_POSTS.childByAppendingPath(postKey).childByAppendingPath("comments").childByAppendingPath(self._commentKey)
