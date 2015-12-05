@@ -106,6 +106,10 @@ class CommentsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
             
     }
     
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
+    }
+    
     func postToFirebase(imgUrl: String?) {
         
         var post: Dictionary<String,AnyObject> = [

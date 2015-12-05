@@ -53,6 +53,10 @@ class CreateUserVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
         presentViewController(alert, animated: true, completion: nil)
     }
     
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
+    }
+    
     
     @IBAction func finishBtnPressed(sender: AnyObject) {
         

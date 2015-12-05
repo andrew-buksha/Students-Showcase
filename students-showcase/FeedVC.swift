@@ -26,6 +26,10 @@ class FeedVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIIm
     var imagePicker: UIImagePickerController!
     
     var imageSelected = false
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -223,6 +227,8 @@ class FeedVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIIm
         tableView.reloadData()
         
     }
+    
+    
     
     func showLogoutConfirmation() {
         showConfirmation("Log out", msg: "Are you sure you want to log out?", btnTitle: "Log Out") { (success) -> Void in
