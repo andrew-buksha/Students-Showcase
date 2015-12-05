@@ -65,7 +65,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     if error != nil {
                         print("Login failed. \(error)")
                     } else {
-                        print("Logged in! \(authData)")
                         
                         let user = ["provider": authData.provider!]
                         DataService.ds.createFirebaseUser(authData.uid, user: user)

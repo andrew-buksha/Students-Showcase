@@ -58,8 +58,6 @@ class FeedCell: UITableViewCell {
         self.profileName.text = post.username
         self.commentsLbl.text = post.comments
         
-        print("Prority is: \(post.postPriority)")
-        
         if post.imageUrl != nil {
             
             if img != nil {
@@ -109,16 +107,5 @@ class FeedCell: UITableViewCell {
     func likeTapped(sender: UITapGestureRecognizer) {
         LikeService.ls.likeTapped(likeRef, likeImg: self.likeImg, likes: post.postLikes, ref: post.postRef)
     }
-    
-//    func showDeleteConfirmation() {
-//        let alert = UIAlertController(title: "Delete post", message: "Are you sure you want to delete post?\n This action can't be canceled.", preferredStyle: UIAlertControllerStyle.Alert)
-//        alert.addAction(UIAlertAction(title: "Delete", style: .Destructive, handler: { (action: UIAlertAction!) in
-//            self.post.postRef.removeValue()
-//        }))
-//        alert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { (action: UIAlertAction!) in
-//            alert.dismissViewControllerAnimated(true, completion: nil)
-//        }))
-//        UIApplication.sharedApplication().keyWindow?.currentViewController()?.presentViewController(alert, animated: true, completion: nil)
-//    }
 
 } 
